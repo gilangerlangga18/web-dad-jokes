@@ -1,6 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { navbarSx as sx } from "./styles";
 import ModalLogin from "../Login";
 import ModalRegister from "../Register";
 import { useGlobalContext } from "../Context/globalContext";
