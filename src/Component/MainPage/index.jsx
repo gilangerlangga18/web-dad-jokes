@@ -3,7 +3,7 @@ import React from "react";
 import { useGlobalContext } from "../Context/globalContext";
 
 function MainPage() {
-  const { authGlobal } = useGlobalContext();
+  const { authGlobal, getJokes, jokes } = useGlobalContext();
   return (
     <Box
       sx={{
@@ -22,69 +22,94 @@ function MainPage() {
       <Box>
         <Box
           sx={{
+            height: "50vh",
             display: "flex",
-            justifyContent: "center",
+            justifyContent: "space-between",
             alignItems: "center",
             flexDirection: "column",
             gap: "20px",
           }}
         >
-          {authGlobal.isLogin ? (
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              flexDirection: "column",
+              gap: "20px",
+            }}
+          >
+            {authGlobal.isLogin ? (
+              <Typography
+                sx={{
+                  fontSize: "50px",
+                  fontWeight: "600",
+                  width: "70%",
+                  textAlign: "center",
+                  color: "white",
+                }}
+              >
+                Welcome Back {authGlobal.name}!
+              </Typography>
+            ) : (
+              <></>
+            )}
             <Typography
               sx={{
-                fontSize: "50px",
+                fontSize: { xs: "22px", md: "30px" },
                 fontWeight: "600",
                 width: "70%",
                 textAlign: "center",
                 color: "white",
               }}
             >
-              Welcome Back {authGlobal.name}!
-            </Typography>
-          ) : (
-            <></>
-          )}
-          <Typography
-            sx={{
-              fontSize: "30px",
-              fontWeight: "600",
-              width: "70%",
-              textAlign: "center",
-              color: "white",
-            }}
-          >
-            Landing Page Gilang, This landing page to ganarate dad jokes
-          </Typography>{" "}
-          <Typography
-            sx={{
-              fontSize: "30px",
-              fontWeight: "500",
-              width: "70%",
-              textAlign: "center",
-              color: "white",
-              fontFamily: "Metal Mania",
-            }}
-          >
-            {" "}
-            if you not happy{" "}
-          </Typography>{" "}
-          <Box
-            sx={{
-              boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
-            }}
-          >
-            <Button
+              This landing page to ganarate dad jokes
+            </Typography>{" "}
+            <Typography
               sx={{
-                fontSize: "20px",
-                backgroundColor: "white",
-                borderRadius: "10px",
-                textDecoration: "unset",
+                fontSize: { xs: "18px", md: "30px" },
+                fontWeight: "500",
+                width: "70%",
+                textAlign: "center",
+                color: "white",
+                fontFamily: "Metal Mania",
               }}
             >
               {" "}
-              click HERE
-            </Button>
+              if you not happy{" "}
+            </Typography>{" "}
+            <Box
+              sx={{
+                boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
+              }}
+            >
+              <Button
+                sx={{
+                  fontSize: "20px",
+                  backgroundColor: "white",
+                  borderRadius: "10px",
+                  textDecoration: "unset",
+                }}
+                onClick={getJokes}
+              >
+                {" "}
+                click HERE
+              </Button>
+            </Box>
           </Box>
+          <Typography
+            sx={{
+              fontSize: { xs: "18px", md: "30px" },
+              fontWeight: "600",
+              width: "70%",
+              textAlign: "center",
+              color: "black",
+              backgroundColor: "whitesmoke",
+              // position: "absolute",
+            }}
+          >
+            {jokes.title}
+          </Typography>
         </Box>
       </Box>
     </Box>

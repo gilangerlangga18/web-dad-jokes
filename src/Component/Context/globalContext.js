@@ -2,6 +2,7 @@ import axios from "axios";
 import { createContext, useContext, useState } from "react";
 
 const GlobalContext = createContext({});
+const urlJokes = " https://candaan-api.vercel.app/api/text";
 
 export const useGlobalContext = () => useContext(GlobalContext);
 
@@ -59,10 +60,26 @@ export default function GlobalContextProvider({ children }) {
   const logout = () => {
     setAuthGLobal(initialValues);
   };
+  const [jokes, setJokes] = useState({ title: "" });
+  const getJokes = async () => {
+    const res = await axios.get("https://candaan-api.vercel.app/api/text");
+    const datas = res.data.data;
+    // console.log(datas.length);
+    const randomIndex = Math.floor(Math.random() * (datas.length - 1));
+    const jokesa = datas.find((item, index) => {
+      return index == randomIndex;
+    });
+
+    setJokes({
+      title: jokesa,
+    });
+    // console.log(jokes);
+  };
+  // console.log(jokes);
 
   return (
     <GlobalContext.Provider
-      value={{ authGlobal, loginUser, registerUser, logout }}
+      value={{ authGlobal, loginUser, registerUser, logout, getJokes, jokes }}
     >
       {children}
     </GlobalContext.Provider>

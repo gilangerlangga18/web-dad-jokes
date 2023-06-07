@@ -6,9 +6,9 @@ import FooterPage from "../Footer";
 function Pages() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <MainPage />
-      <FooterPage />
+      {/* <FooterPage /> */}
     </>
   );
 }
