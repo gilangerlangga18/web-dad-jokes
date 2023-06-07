@@ -13,7 +13,7 @@ function MainPage() {
     // console.log(datas.length);
     const randomIndex = Math.floor(Math.random() * (datas.length - 1));
     const jokesa = datas.find((item, index) => {
-      return index == randomIndex;
+      return index === randomIndex;
     });
 
     setJokes({
