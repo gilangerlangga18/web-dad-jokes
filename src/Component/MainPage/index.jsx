@@ -1,9 +1,26 @@
 import { Box, Button, Typography } from "@mui/material";
-import React from "react";
-import { useGlobalContext } from "../Context/globalContext";
+import axios from "axios";
+import React, { useState } from "react";
+// import { useGlobalContext } from "../Context/globalContext";
 
 function MainPage() {
-  const { authGlobal, getJokes, jokes } = useGlobalContext();
+  // const { authGlobal, getJokes, jokes } = useGlobalContext();
+
+  const [jokes, setJokes] = useState({ title: "" });
+  const getJokes = async () => {
+    const res = await axios.get("https://candaan-api.vercel.app/api/text");
+    const datas = res.data.data;
+    // console.log(datas.length);
+    const randomIndex = Math.floor(Math.random() * (datas.length - 1));
+    const jokesa = datas.find((item, index) => {
+      return index == randomIndex;
+    });
+
+    setJokes({
+      title: jokesa,
+    });
+    // console.log(jokes);
+  };
   return (
     <Box
       sx={{
@@ -39,7 +56,7 @@ function MainPage() {
               gap: "20px",
             }}
           >
-            {authGlobal.isLogin ? (
+            {/* {authGlobal.isLogin ? (
               <Typography
                 sx={{
                   fontSize: "50px",
@@ -53,7 +70,7 @@ function MainPage() {
               </Typography>
             ) : (
               <></>
-            )}
+            )} */}
             <Typography
               sx={{
                 fontSize: { xs: "22px", md: "30px" },
